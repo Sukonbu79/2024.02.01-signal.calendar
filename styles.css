@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+/* 信号機 */
+.container {
+  width: 340px;
+  background-color: pink;
+  padding: 8px 8px;
+}
+
+.signal {
+  width: 300px;
+  height: 120px;
+  border: solid 2px gray;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background: #ddd;
+  user-select: none;
+}
+
+.signal > div {
+  width: 80px;
+  height: 80px;
+  border: solid 2px #333;
+  border-radius: 50%;
+}
+
+#blue {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+#btn {
+  display: block;
+margin: 12px auto 8px;
+font-size: 32px;
+border-radius: 8px;
+user-select: none;
+}
+
+.blue-color {
+  background-color: skyblue;
+}
+
+.blue-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.yellow-color {
+  background-color: yellow;
+}
+
+.red-color {
+  background-color: red;
+}
+
+.gray-color {
+  background-color: #aaa;
+}
+
+/* カレンダー */
+#calendar {
+  width: 340px;
+  font-size: 36px;
+  border: solid 2px #555;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 0 8px;
+  text-align: center;
+  user-select: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 時計 */
+#clock {
+  width: 340px;
+  font-size: 36px;
+  border: solid 2px #555;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 0 8px;
+  text-align: center;
+  user-select: none;
+}

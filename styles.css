@@ -1,97 +1,75 @@
-@charset "utf-8";
+"use strict";
 
-/* 信号機 */
-.container {
-  width: 340px;
-  background-color: pink;
-  padding: 8px 8px;
-}
+{
+  // 信号機
+  const blue = document.querySelector("#blue");
+  const yellow = document.querySelector("#yellow");
+  const red = document.querySelector("#red");
+  const btn = document.querySelector("#btn");
 
-.signal {
-  width: 300px;
-  height: 120px;
-  border: solid 2px gray;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 16px;
-  background: #ddd;
-}
+  btn.addEventListener("click", () => {
+    btn.disabled = true;
+    btn.textContent = 'お待ち下さい';
+    setTimeout(() => {
+      red.classList.add("gray-color");
+      blue.classList.remove("gray-color");
+      blue.classList.add("blue-color");
+      btn.textContent = '横断中';
+    }, 2000);
+    setTimeout(() => {
+      blue.classList.add("blue-blink");
+      btn.textContent = '信号が変わります';
+    }, 5500);
+    setTimeout(() => {
+      blue.classList.remove("blue-blink");
+      blue.classList.add("gray-color");
+      yellow.classList.remove("gray-color");
+      yellow.classList.add("yellow-color");
+    }, 8500);
+    setTimeout(() => {
+      yellow.classList.remove("yellow-color");
+      yellow.classList.add("gray-color");
+      red.classList.remove("gray-color");
+      red.classList.add("red-color");
+      btn.disabled = false;
+      btn.textContent = '押してください';
+    }, 11000);
+  });
 
-.signal > div {
-  width: 80px;
-  height: 80px;
-  border: solid 2px #333;
-  border-radius: 50%;
-}
-
-#blue {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-
-#btn {
-  display: block;
-margin: 12px auto 8px;
-font-size: 32px;
-font-weight: 900;
-border-radius: 8px;
-user-select: none;
-}
-
-.blue-color {
-  background-color: skyblue;
-}
-
-.blue-blink {
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  from {
-    opacity: 1;
+  // カレンダー
+  function setDay() {
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = String(d.getMonth() + 1).padStart(2, 0);
+    let day = String(d.getDate()).padStart(2, 0);
+    let date = `${year}年${month}月${day}日`;
+    document.querySelector("#day").textContent = date;
   }
-  to {
-    opacity: 0;
+
+  setDay();
+
+  // 曜日
+  function setWeek() {
+    let d = new Date();
+    let week = d.getDay();
+    let weekArray = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"];
+    document.querySelector("#week").textContent = weekArray[week];
   }
-}
 
-.yellow-color {
-  background-color: yellow;
-}
+  setWeek();
 
-.red-color {
-  background-color: red;
-}
+  // 時計
+  function setTime() {
+    let d = new Date();
+    let h = String(d.getHours()).padStart(2, 0);
+    let m = String(d.getMinutes()).padStart(2, 0);
+    let s = String(d.getSeconds()).padStart(2, 0);
+    let time = `${h}:${m}:${s}`;
+    document.querySelector("#clock").textContent = time;
+  }
 
-.gray-color {
-  background-color: #aaa;
-}
-
-/* カレンダー */
-#calendar {
-  width: 340px;
-  font-size: 36px;
-  border: solid 2px #555;
-  border-radius: 8px;
-  margin-top: 16px;
-  padding: 0 8px;
-  text-align: center;
-  user-select: none;
-  display: flex;
-  justify-content: space-around;
-}
-
-/* 時計 */
-#clock {
-  width: 340px;
-  font-size: 36px;
-  border: solid 2px #555;
-  border-radius: 8px;
-  margin-top: 16px;
-  padding: 0 8px;
-  text-align: center;
-  user-select: none;
+  setTime();
+  setInterval(() => {
+    setTime();
+  }, 100);
 }

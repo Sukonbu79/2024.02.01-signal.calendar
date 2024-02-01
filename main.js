@@ -9,13 +9,16 @@
 
   btn.addEventListener("click", () => {
     btn.disabled = true;
+    btn.textContent = 'お待ち下さい';
     setTimeout(() => {
       red.classList.add("gray-color");
       blue.classList.remove("gray-color");
       blue.classList.add("blue-color");
+      btn.textContent = '横断中';
     }, 2000);
     setTimeout(() => {
       blue.classList.add("blue-blink");
+      btn.textContent = '信号が変わります';
     }, 5500);
     setTimeout(() => {
       blue.classList.remove("blue-blink");
@@ -29,6 +32,7 @@
       red.classList.remove("gray-color");
       red.classList.add("red-color");
       btn.disabled = false;
+      btn.textContent = '押してください';
     }, 11000);
   });
 
